@@ -103,7 +103,6 @@ export const activateUser = TryCatch(
     res.clearCookie("activation", {
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
     });
 
     const { name, email, password } = newUser.user;
@@ -195,7 +194,6 @@ export const resendOtp = TryCatch(
     res.cookie("activation", newActivationToken, {
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
       maxAge: 60 * 60 * 1000,
     });
 
