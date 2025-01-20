@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "node dist/server.js",
-    "postinstall": "prisma generate --schema prisma/Schema",
+    "postinstall": "prisma generate",
     "build": "tsc",
     "dev": "npx nodemon src/server.ts",
     "watch": "npx tsc -w"
