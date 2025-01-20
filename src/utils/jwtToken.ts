@@ -1,6 +1,6 @@
 import jwt, { Secret } from "jsonwebtoken";
 import { IRegistration } from "../types/types.js";
-import { Response } from "express";
+import { CookieOptions, Response } from "express";
 import { IUser } from "../types/types";
 import crypto from "crypto";
 
@@ -15,12 +15,11 @@ export const sendToken = (user: IUser, statusCode: number, res: Response) => {
     }
   );
 
-  const option = {
+  const option: CookieOptions = {
     expires: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000),
     httpOnly: true,
     secure: process.env.NODE_ENV === "PRODUCTION", // Requires HTTPS in production
-    sameSite: process.env.NODE_ENV === "PRODUCTION" ? "none" : "lax", // Enable cross-site usage in production
-  } as const;
+  };
 
   res.cookie("access_token", token, option);
 
