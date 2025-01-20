@@ -1,0 +1,111 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Author Request - Orbit Blog</title>
+    <style>
+      /* General Reset */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 2px solid #eaeaea;
+      }
+
+      .header h1 {
+        font-size: 24px;
+        margin: 0;
+        color: #c026d3;
+      }
+      .email-body {
+        padding: 20px;
+      }
+      .email-body h2 {
+        font-size: 20px;
+        margin-top: 0;
+      }
+      .email-body p {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      .email-footer {
+        text-align: center;
+        font-size: 14px;
+        color: #999;
+        padding: 10px;
+      }
+      .btn {
+        display: inline-block;
+        background-color: #c026d3;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+
+      .footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 14px;
+        color: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1><%=siteName%></h1>
+      </div>
+
+      <div class="email-body">
+        <h2>Hello <%= name %>,</h2>
+        <p>
+          We are thrilled to inform you that your request to become an author on
+          <strong><%=siteName%></strong> has been approved!
+        </p>
+        <p>
+          As an author, you now have access to your author dashboard, where you
+          can create, edit, and manage your posts. We are excited to see your
+          contributions to our platform and share your unique voice with our
+          audience.
+        </p>
+        <p>
+          To get started, click the button below to log in to your dashboard:
+        </p>
+        <p style="text-align: center">
+          <a href="<%= dashboardUrl %>" class="btn">Go to Dashboard</a>
+        </p>
+        <p>
+          If you have any questions or need assistance, feel free to reach out
+          to us. We’re here to support you every step of the way.
+        </p>
+        <p>
+          Happy blogging!<br />
+          The <%=siteName%> Team
+        </p>
+      </div>
+      <div class="footer">
+        <p>
+          &copy; <%= new Date().getFullYear() %> <%=siteName%>. All rights
+          reserved.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

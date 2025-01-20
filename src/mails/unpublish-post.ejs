@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Post Unpublished Notification</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+      .container {
+        width: 80%;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+      .header {
+        background-color: #c026d3;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px 5px 0 0;
+      }
+      .content {
+        margin-top: 20px;
+      }
+      .footer {
+        margin-top: 30px;
+        font-size: 0.9em;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Post Unpublished Notification</h1>
+      </div>
+      <div class="content">
+        <p>Dear <%= authorName %>,</p>
+        <p>
+          We regret to inform you that your post titled "<strong
+            ><%= postTitle %></strong
+          >" has been unpublished by our admin team. Take action within 72 hours
+          otherwise the post will be deleted.
+        </p>
+        <p><strong>Reason for unpublishing:</strong></p>
+        <p><em><%= reason %></em></p>
+        <p>
+          If you have any questions or require further clarification, please
+          feel free to contact us.
+        </p>
+        <p>Best regards,</p>
+        <p>The Admin Team</p>
+      </div>
+      <div class="footer">
+        <p>
+          &copy; <%= new Date().getFullYear() %> <%=siteName%>. All rights
+          reserved.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

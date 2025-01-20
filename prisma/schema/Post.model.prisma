@@ -1,0 +1,81 @@
+model Post {
+    id              Int            @id @default(autoincrement())
+    title           String
+    slug            String         @unique
+    content         String
+    description     String 
+    category        Category @relation(fields: [categoryId],references: [id])
+    categoryId      Int
+    tags            PostTags[] 
+    featuredImage   String?
+    featuredImageId String?
+    published       Boolean        @default(false)
+    publishedAt     DateTime?
+    author          User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    authorId        String
+    views           Int            @default(0)
+    likes           Like[]
+    comments        Comment[]  
+    minRead         Int    
+    metaTitle       String?
+    metaDescription String?
+    metaKeyword     String?
+    createdAt       DateTime       @default(now())
+    updatedAt       DateTime       @updatedAt
+}
+
+model Like{
+    id  Int @id @default(autoincrement())
+    post Post @relation(fields: [postId],references: [id],onDelete: Cascade)
+    postId Int
+    user User @relation(fields: [userId],references: [id], onDelete: Cascade)
+    userId String
+    createdAt DateTime @default(now())
+}
+
+model Tag {
+    id    Int       @id @default(autoincrement())
+    value  String    @unique
+    label String @unique    
+    posts PostTags[] 
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Category {
+    id    Int       @id @default(autoincrement())
+    value  String    @unique
+    label String @unique    
+    post    Post[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Comment {
+    id       Int       @id @default(autoincrement())
+    content  String
+    user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId   String
+    postId   Int
+    post     Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+    replies  Reply[]  
+    createdAt DateTime @default(now())
+}
+
+model Reply {
+    id        Int      @id @default(autoincrement())
+    content   String
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId    String
+    commentId Int
+    comment   Comment  @relation(fields: [commentId], references: [id],onDelete:Cascade)
+    createdAt DateTime @default(now())
+}
+
+model PostTags {
+    post       Post      @relation(fields: [postId], references: [id])
+    postId     Int
+    tag   Tag  @relation(fields: [tagsId], references: [id])
+    tagsId Int
+    @@id([postId, tagsId]) 
+}

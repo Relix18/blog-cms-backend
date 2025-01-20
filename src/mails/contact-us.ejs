@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us Form Submission</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        background-color: #c026d3;
+        color: #ffffff;
+        text-align: center;
+        padding: 10px 0;
+        border-radius: 5px 5px 0 0;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+      .content {
+        padding: 20px;
+      }
+      .content p {
+        margin: 10px 0;
+      }
+      .content strong {
+        color: #c026d3;
+      }
+      .footer {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #777;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Contact Us Submission</h1>
+      </div>
+      <div class="content">
+        <p><strong>From:</strong> <%= email %></p>
+        <p><strong>Name:</strong> <%= name %></p>
+
+        <p><strong>Message:</strong></p>
+        <p><em><%= message %></em></p>
+      </div>
+      <div class="footer">
+        <p>
+          &copy; <%= new Date().getFullYear() %> <%=siteName%>. All rights
+          reserved.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

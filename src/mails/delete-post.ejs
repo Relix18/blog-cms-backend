@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post Deletion Notification</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        background-color: #c026d3;
+        color: #ffffff;
+        text-align: center;
+        padding: 10px 0;
+        border-radius: 5px 5px 0 0;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+      .content {
+        padding: 20px;
+      }
+      .content p {
+        margin: 10px 0;
+      }
+
+      .footer {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #777;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Post Deletion Notification</h1>
+      </div>
+      <div class="content">
+        <p>Dear <%= authorName %>,</p>
+        <p>
+          We regret to inform you that your post titled "<strong
+            ><%= postTitle %></strong
+          >" has been deleted by our admin team.
+        </p>
+        <p>
+          <strong>Reason for deletion:</strong> You did not take the required
+          action within the specified time frame after being notified about an
+          issue with your post.
+        </p>
+        <p>
+          If you believe this action was taken in error or have further
+          questions, please feel free to contact us.
+        </p>
+        <p>Thank you for your understanding.</p>
+        <p>Best regards,</p>
+        <p>The Admin Team</p>
+      </div>
+      <div class="footer">
+        <p>
+          &copy; <%= new Date().getFullYear() %> <%=siteName%>. All rights
+          reserved.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
