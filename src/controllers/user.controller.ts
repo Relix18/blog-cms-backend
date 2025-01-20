@@ -44,6 +44,8 @@ export const register = TryCatch(
 
     const option = {
       expires: new Date(Date.now() + 60 * 60 * 1000),
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "PRODUCTION",
     };
 
     const settings = await prisma.siteSettings.findFirst({});
@@ -193,7 +195,7 @@ export const resendOtp = TryCatch(
 
     res.cookie("activation", newActivationToken, {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === "PRODUCTION",
       maxAge: 60 * 60 * 1000,
     });
 
