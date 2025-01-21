@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["https://orbitblog.vercel.app", "http://localhost:3000"],
+    origin: process.env.CLIENT_URL,
     credentials: true,
   })
 );

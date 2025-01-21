@@ -19,7 +19,7 @@ export const sendToken = (user: IUser, statusCode: number, res: Response) => {
     expires: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000),
     httpOnly: true,
     secure: process.env.NODE_ENV === "PRODUCTION", // Requires HTTPS in production
-    sameSite: "lax",
+    sameSite: "none",
   };
 
   res.cookie("access_token", token, option);
