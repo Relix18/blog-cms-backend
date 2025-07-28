@@ -2,13 +2,9 @@
   "name": "blog-platform-cms-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "postinstall": "prisma generate",
-    "build": "tsc",
-    "dev": "npx nodemon dist/index.js",
-    "watch": "npx tsc -w"
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
