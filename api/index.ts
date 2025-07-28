@@ -1,8 +1,8 @@
-import { app, envMode } from "./app.js";
+import { app, envMode } from "../src/app.js";
 import dotenv from "dotenv";
 import { v2 as cloudinary } from "cloudinary";
 import http from "http";
-import { initSocketServer } from "./socketServer.js";
+import { initSocketServer } from "../src/socketServer.js";
 const socketServer = http.createServer(app);
 
 dotenv.config({ path: "./.env" });
