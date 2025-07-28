@@ -4,7 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "postinstall": "prisma generate"
+=======
+    "start": "node index.js",
+    "postinstall": "prisma generate",
+    "build": "tsc",
+    "dev": "npx nodemon index.js",
+    "watch": "npx tsc -w"
+>>>>>>> d461fe73c119e2eb9fa24b2527984d3cce286009
   },
   "keywords": [],
   "author": "",
