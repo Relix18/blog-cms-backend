@@ -71,7 +71,7 @@ export const register = TryCatch(
       success: true,
       message: "Verification mail has been sent to your email.",
     });
-  }
+  },
 );
 
 export const activateUser = TryCatch(
@@ -83,19 +83,19 @@ export const activateUser = TryCatch(
       return next(
         new ErrorHandler(
           400,
-          "Verification session expired. Please sign up again."
-        )
+          "Verification session expired. Please sign up again.",
+        ),
       );
     }
 
     const newUser = jwt.verify(
       activation,
-      process.env.JWT_SECRET as Secret
+      process.env.JWT_SECRET as Secret,
     ) as { user: IRegistration; activationCode: { otp: string; expire: Date } };
 
     if (newUser.activationCode.expire < new Date(Date.now())) {
       return next(
-        new ErrorHandler(400, "Activation code already expired. Try again ")
+        new ErrorHandler(400, "Activation code already expired. Try again "),
       );
     }
 
@@ -137,7 +137,7 @@ export const activateUser = TryCatch(
     });
 
     sendToken(user, 200, res);
-  }
+  },
 );
 
 export const resendOtp = TryCatch(
@@ -148,8 +148,8 @@ export const resendOtp = TryCatch(
       return next(
         new ErrorHandler(
           400,
-          "Verification session expired. Please sign up again."
-        )
+          "Verification session expired. Please sign up again.",
+        ),
       );
     }
 
@@ -157,14 +157,14 @@ export const resendOtp = TryCatch(
     try {
       decodedToken = jwt.verify(
         activation,
-        process.env.JWT_SECRET as Secret
+        process.env.JWT_SECRET as Secret,
       ) as {
         user: IRegistration;
         activationCode: { otp: string; expire: Date };
       };
     } catch (err) {
       return next(
-        new ErrorHandler(400, "Invalid or expired activation token.")
+        new ErrorHandler(400, "Invalid or expired activation token."),
       );
     }
 
@@ -190,7 +190,7 @@ export const resendOtp = TryCatch(
         },
       },
       process.env.JWT_SECRET as Secret,
-      { expiresIn: "60m" }
+      { expiresIn: "60m" },
     );
 
     res.cookie("activation", newActivationToken, {
@@ -222,7 +222,7 @@ export const resendOtp = TryCatch(
       success: true,
       message: "OTP has been resent successfully. Please check your email.",
     });
-  }
+  },
 );
 
 export const login = TryCatch(
@@ -255,7 +255,7 @@ export const login = TryCatch(
       return next(new ErrorHandler(400, "Invalid email or password"));
     }
     sendToken(user, 200, res);
-  }
+  },
 );
 
 export const logout = TryCatch(
@@ -273,7 +273,7 @@ export const logout = TryCatch(
       success: true,
       message: "Logout Successfully",
     });
-  }
+  },
 );
 
 export const getUser = TryCatch(
@@ -299,7 +299,7 @@ export const getUser = TryCatch(
       success: true,
       user,
     });
-  }
+  },
 );
 
 export const getAuthorDetails = TryCatch(
@@ -331,7 +331,7 @@ export const getAuthorDetails = TryCatch(
       success: true,
       author,
     });
-  }
+  },
 );
 
 export const socialAuth = TryCatch(
@@ -375,7 +375,7 @@ export const socialAuth = TryCatch(
     } else {
       sendToken(user, 200, res);
     }
-  }
+  },
 );
 
 export const forgotPassword = TryCatch(
@@ -404,7 +404,7 @@ export const forgotPassword = TryCatch(
       },
     });
 
-    const resetPasswordLink = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+    const resetPasswordLink = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
 
     const settings = await prisma.siteSettings.findFirst({});
 
@@ -434,7 +434,7 @@ export const forgotPassword = TryCatch(
       const err = error as Error;
       return next(new ErrorHandler(400, err.message || "Failed to send email"));
     }
-  }
+  },
 );
 
 export const resetPassword = TryCatch(
@@ -455,7 +455,7 @@ export const resetPassword = TryCatch(
 
     if (!user) {
       return next(
-        new ErrorHandler(400, "Reset Password token is invalid or expired")
+        new ErrorHandler(400, "Reset Password token is invalid or expired"),
       );
     }
 
@@ -478,7 +478,7 @@ export const resetPassword = TryCatch(
       success: true,
       message: "Password Reset Successfully",
     });
-  }
+  },
 );
 
 export const updateProfile = TryCatch(
@@ -552,7 +552,7 @@ export const updateProfile = TryCatch(
       success: true,
       message: "Profile updated successfully",
     });
-  }
+  },
 );
 
 export const updataAvatar = TryCatch(
@@ -602,7 +602,7 @@ export const updataAvatar = TryCatch(
     res
       .status(200)
       .json({ success: true, message: "Profile picture updated successfully" });
-  }
+  },
 );
 
 export const updatePassword = TryCatch(
@@ -633,7 +633,7 @@ export const updatePassword = TryCatch(
 
     const isMatch = await bcrypt.compare(
       currentPassword,
-      user.password as string
+      user.password as string,
     );
 
     if (!isMatch) {
@@ -652,7 +652,7 @@ export const updatePassword = TryCatch(
     res
       .status(200)
       .json({ success: true, message: "Password updated successfully" });
-  }
+  },
 );
 
 export const authorRequest = TryCatch(
@@ -689,7 +689,7 @@ export const authorRequest = TryCatch(
 
     if (isNotified) {
       return next(
-        new ErrorHandler(400, "Already requested. Please wait 24 hours.")
+        new ErrorHandler(400, "Already requested. Please wait 24 hours."),
       );
     }
 
@@ -716,7 +716,7 @@ export const authorRequest = TryCatch(
       success: true,
       message: "You will get the mail within 24 hours.",
     });
-  }
+  },
 );
 
 export const contactUs = TryCatch(
@@ -745,7 +745,7 @@ export const contactUs = TryCatch(
       success: true,
       message: "Message sent successfully",
     });
-  }
+  },
 );
 
 // Admin
@@ -758,7 +758,7 @@ export const getAllUser = TryCatch(
       success: true,
       users,
     });
-  }
+  },
 );
 
 export const getUserDetails = TryCatch(
@@ -792,7 +792,7 @@ export const getUserDetails = TryCatch(
       success: true,
       user,
     });
-  }
+  },
 );
 
 export const getAllComments = TryCatch(
@@ -852,7 +852,7 @@ export const getAllComments = TryCatch(
           content: string;
           createdAt: Date;
           userId: string;
-        }
+        },
       ) => ({
         id: r.id,
         content: r.content,
@@ -867,7 +867,7 @@ export const getAllComments = TryCatch(
         },
         userId: r.userId,
         type: "Reply",
-      })
+      }),
     );
 
     const comms = [
@@ -879,7 +879,7 @@ export const getAllComments = TryCatch(
       success: true,
       comms,
     });
-  }
+  },
 );
 
 export const updateRole = TryCatch(
@@ -927,7 +927,7 @@ export const updateRole = TryCatch(
       success: true,
       message: "Role updated successfully",
     });
-  }
+  },
 );
 
 export const deleteUser = TryCatch(
@@ -951,5 +951,5 @@ export const deleteUser = TryCatch(
       success: true,
       message: "User deleted successfully",
     });
-  }
+  },
 );
