@@ -73,6 +73,15 @@ export const createSiteSettings = TryCatch(
   }
 );
 
+export const getSiteHealth = TryCatch(
+  async (req: Request, res: Response, next: NextFunction) => {
+    res.status(200).json({
+      success: true,
+      message: "Site is healthy.",
+    });
+  }
+);
+
 export const getSiteSettings = TryCatch(
   async (req: Request, res: Response, next: NextFunction) => {
     const siteSettings = await prisma.siteSettings.findFirst();

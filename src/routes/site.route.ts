@@ -2,6 +2,7 @@ import { Router } from "express";
 import { isAdmin, isAuthenticated } from "../middlewares/auth.js";
 import {
   createSiteSettings,
+  getSiteHealth,
   getSiteSettings,
   updateSiteSettings,
 } from "../controllers/site.controller.js";
@@ -14,7 +15,10 @@ router.post(
   isAdmin,
   createSiteSettings
 );
+
+router.get("/get-site-health", getSiteHealth);
 router.get("/get-site-settings", getSiteSettings);
+
 router.put(
   "/update-site-settings",
   isAuthenticated,
